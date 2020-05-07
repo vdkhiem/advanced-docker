@@ -1,0 +1,4 @@
+*.zip
+/app/*.zip
+/app/Dockerfile
+.vscode

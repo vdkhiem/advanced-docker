@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  advanced-app: 
+    image: advanced-app-image
+    container_name: advanced-app-container
+    build: 
+      context: ./App
+      dockerfile: Dockerfile
+    ports: 
+    - "5481:80"
+    depends_on: 
+    - advanced-db
+    tty: true
+  advanced-db:
+    image: vdkhiem/advancedmysqlcore:5.7.27
+    container_name: advanced-mysql-container
+    ports: 
+    - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PWD=root 
+    tty: true 
+networks:
+  default:
+      external:
+        name: advanced-net
+
+#tty: true. It ensures the mysql is running after docker-compose -up finished
+  
